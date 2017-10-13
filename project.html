@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Sk.Ruha Tabasum" />
+	<meta name="description" content="Register me page that generates a unique qr code for each person">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<title>Register Me</title>
+	<style>
+	.signup__container {
+		position: absolute;
+		top: 50%;
+		right: 10px;
+		left: 10px;
+		-webkit-transform: translateY(-50%);
+        transform: translateY(-50%);		
+		align-items: center;
+		justify-content: center;		
+		box-shadow: 0px 0.1875rem 0.4375rem rgba(0, 0, 0, 0.25);
+		background-color:#F8F8F8;
+	}
+	body{
+		background-image:url(img/upload.jpeg);
+	}
+	.form-control {
+		background-color: transparent;
+		border-top: 0;
+		border-right: 0;		
+		border-radius: 0;
+		box-shadow:none;
+	}
+	input{
+	border-left-width:5px !important;
+	border-left-style:solid !important;
+	margin-bottom:10px;
+	}
+	@media screen and (min-width:768px){
+		.signup__container {
+			right:10%;
+			left:10%;
+		}
+		.form-inline .form-control{
+			width:49%;
+		}
+	}
+	.thumb-image{
+	float:left;
+	width:100%;
+	height:100%;
+	position:relative;
+	padding:0px;
+	}
+	
+	</style>
+</head>
+<body>
+
+<div class="container-fluid signup__container">
+	<div class="row">
+		<div class="col-lg-5 col-md-12 " style="padding:0">
+		<center>
+			<div id="wrapper" style="margin-top: 20px;">
+				<input style=" border-left-style:none !important;" id="fileUpload"  type="file"/> 
+				<div id="drop_zone"></div>
+			</div>
+			<img src="img/startup-photos.jpg" style="width:100%">
+		</center>			
+		</div>
+		<div class="col-lg-7 col-md-12">
+			<form action="#" >
+				<div class="form-group">
+					<label for="username">User Name</label>
+					<div class="form-inline">
+					<input class="form-control" type="text" name="username" id="username" placeholder="First Name" required />
+					<input class="form-control" type="text" name="username" id="username" placeholder="Last Name" required />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="jobdetails">Job Details</label>
+					<div class="form-inline">
+					<input class="form-control" type="text" name="username" id="username" placeholder="Job Title" required />
+					<input class="form-control" type="text" name="username" id="username" placeholder="Department" required />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="contact">Contact</label>
+					<div class="form-inline">					
+					<input class="form-control" type="text" name="email" id="email" placeholder="Phone Number" required />
+					<input class="form-control" type="text" name="email" id="email" placeholder="Email" required />
+					</div>
+				</div>		
+				
+				<div class="form-group">
+					<label for="address">Address</label>
+					<input class="form-control" type="text" name="passwordRepeat" id="passwordRepeat" placeholder="Do.No/Street Name" required />
+					<div class="form-inline">					
+					<input class="form-control" type="text" name="email" id="email" placeholder="City" required />
+					<input class="form-control" type="text" name="email" id="email" placeholder="State/Region" required />
+					</div>
+					<div class="form-inline">					
+					<input class="form-control" type="text" name="email" id="email" placeholder="Country" required />
+					<input class="form-control" type="text" name="email" id="email" placeholder="Zip" required />
+					</div>
+				</div>
+				<center>
+				<ul class="list-inline">
+					<li>
+					<input class="btn btn--form" type="submit" value="Register" />
+					</li>
+				</ul>
+				</center>
+			</form>  
+		</div>
+	</div>
+</div>
+<script>
+$(document).ready(function() {
+        $("#fileUpload").on('change', function() {
+          var imgPath = $(this)[0].value;
+          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+          var image_holder = $("#drop_zone");
+          image_holder.empty();
+          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+            if (typeof(FileReader) != "undefined") {           
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  $("<img/>", {
+                    "src": e.target.result,
+                    "class": "thumb-image"
+                  }).appendTo(image_holder);
+                }
+                image_holder.show();
+                reader.readAsDataURL($(this)[0].files[0]);              
+            } else {
+              alert("This browser does not support FileReader.");
+            }
+          } else {
+            alert("Pls select only images");
+          }
+        });
+      });
+</script>	
+</body>
